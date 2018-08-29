@@ -3,8 +3,8 @@ var connection = require("../config/connection.js");
 
 
 var orm = {
-    selectAll: function(tableInput, cb) {
-      var queryString = "SELECT * FROM " + tableInput + ";";
+    selectAll: function(cb) {
+      var queryString = "SELECT * FROM burgers";
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
@@ -13,19 +13,12 @@ var orm = {
       });
     },
 
-    insertOne: function(table, cols, vals, cb) {
-      var queryString = "INSERT INTO " + table;
-  
-      queryString += " (";
-      queryString += cols.toString();
-      queryString += ") ";
-      queryString += "VALUES (";
-      queryString += printQuestionMarks(vals.length);
-      queryString += ") ";
+    insertOne: function(val, cb) {
+      var queryString = "INSERT INTO burgers (burger_name) VALUES (" + val.toString() + ") ";
   
       console.log(queryString);
   
-      connection.query(queryString, vals, function(err, result) {
+      connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
         }
@@ -34,13 +27,8 @@ var orm = {
       });
     },
 
-    updateOne: function(table, objColVals, condition, cb) {
-      var queryString = "UPDATE " + table;
-  
-      queryString += " SET ";
-      queryString += objToSql(objColVals);
-      queryString += " WHERE ";
-      queryString += condition;
+    updateOne: function(val, cb) {
+      var queryString = "UPDATE burgers SET devoured = true WHERE burger_name = " + val.toString();
   
       console.log(queryString);
       connection.query(queryString, function(err, result) {
@@ -51,19 +39,6 @@ var orm = {
         cb(result);
       });
     },
-    delete: function(table, condition, cb) {
-      var queryString = "DELETE FROM " + table;
-      queryString += " WHERE ";
-      queryString += condition;
-  
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        cb(result);
-      });
-    }
   };
 
 
