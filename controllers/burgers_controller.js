@@ -25,18 +25,15 @@ router.post("/api/burgers", function (req, res) {
 });
 
 router.put("/api/burgers/devour", function (req, res) {
-    console.log(req);
-    console.log(res);
+    console.log("This is req.body: " + JSON.stringify(req.body));
 
-    var newBurger = req.body.burger;
-    console.log(newBurger);
-    burger.insertOne(newBurger, function (result) {
-        res.redirect("/");
+    var changeBurger = req.body.burger_name;
+    console.log("This is changeBurger: " + changeBurger);
+    burger.updateOne(changeBurger, function (result) {
+        // res.redirect("/");
+        res.json({status: 'you did it'})
     });
 });
-
-
-
 
 
 // Export routes for server.js to use.

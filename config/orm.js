@@ -28,7 +28,7 @@ var orm = {
     },
 
     updateOne: function(val, cb) {
-      var queryString = "UPDATE burgers SET devoured = true WHERE burger_name = " + val.toString();
+      var queryString = "UPDATE burgers SET devoured = true WHERE burger_name = '" + val.toString() + "'";
   
       console.log(queryString);
       connection.query(queryString, function(err, result) {
