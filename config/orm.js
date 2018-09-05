@@ -14,7 +14,7 @@ var orm = {
     },
 
     insertOne: function(val, cb) {
-      var queryString = "INSERT INTO burgers (burger_name) VALUES (" + val.toString() + ") ";
+      var queryString = "INSERT INTO burgers (burger_name) VALUES ('" + val.toString() + "'); ";
   
       console.log(queryString);
   
