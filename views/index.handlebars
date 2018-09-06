@@ -5,39 +5,41 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css" />
         <!-- Jquery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <title>Eat Da Burger</title>
 </head>
 
-<section class="jumbotron text-center shadow-lg bg-light">
+<section class="jumbotron text-center shadow-lg bg-white">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>Eat Da Burger!</h1>
+        <h1 class="mb-3">Eat Da Burger!</h1>
         <img class="mb-3" src="/assets/img/burger.png" width="240" height="240">
       </div>
     </div>
   </div>
 </section>
 
-<div class="container bg-light">
+<div class="container">
 
   <div class="row text-center">
     <div class="col-md-6">
-      <h2>Eat Us!!</h2>
+      <h2 class="bg-white">Eat Us!!</h2>
       <ul class="list-group shadow-lg">
         {{#each burgers}} {{#if this.devoured}} {{else}}
         <li class="list-group-item">
           <p>#{{this.id}} Burger Name: {{this.burger_name}}</p>
-          <button type="submit" class="devour-button" id="{{this.burger_name}}">Devour It!</button>
+          <button type="submit" class="devour-button btn btn-outline-dark" id="{{this.burger_name}}">Devour It!</button>
         </li>
         {{/if}} {{/each}}
       </ul>
 
     </div>
     <div class="col-md-6">
-      <h2>Devoured Burgers!</h2>
+      <h2 class="bg-white">Devoured Burgers!</h2>
 
       <ul class="list-group shadow-lg">
         {{#each burgers}} {{#if this.devoured}}
@@ -51,13 +53,12 @@
 
     </div>
   </div>
-  <div class="row text-center mt-5">
+  <div class="row text-center mt-5 bg-white">
     <div class="col-md-12 p-4 shadow-lg">
       <h2 class="mb-4">Enter a burger you'd like to eat:</h2>
       <div>
         <form action="/api/burgers" method="POST">
-          <textarea type="text" name="burger"></textarea>
-          <button type="submit">Submit</button>
+          <textarea type="text" rows="1" name="burger"></textarea><br><button type="submit" class="btn btn-outline-dark mt-2">Submit</button>
         </form>
       </div>
     </div>
